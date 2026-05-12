@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ULS - Acceder</title>
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Source Sans 3', sans-serif;
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Background image */
+    .bg {
+      position: fixed;
+      inset: 0;
+      background-image: url('https://evacurc.uls.edu.sv/pluginfile.php/1/theme_moove/loginbgimg/1776869875/curcedificio.png');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.85);
+      z-index: 0;
+    }
+
+    /* Card */
+    .card {
+      position: relative;
+      z-index: 1;
+      background: #fff;
+      border-radius: 6px;
+      padding: 40px 44px 36px;
+      width: 100%;
+      max-width: 480px;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.18);
+      animation: fadeUp 0.45s ease both;
+    }
+
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(24px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Logo area */
+    .logo-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 28px;
+    }
+
+    .logo-wrap img {
+      height: 130px;
+      width: auto;
+      object-fit: contain;
+    }
+
+    /* Inputs */
+    .field {
+      margin-bottom: 14px;
+    }
+
+    .field input {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      font-size: 15px;
+      font-family: inherit;
+      color: #333;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+      background: #fff;
+    }
+
+    .field input::placeholder { color: #aaa; }
+
+    .field input:focus {
+      border-color: #1a3a6e;
+      box-shadow: 0 0 0 3px rgba(26,58,110,0.12);
+    }
+
+    /* Button */
+    .btn-acceder {
+      width: 100%;
+      padding: 13px;
+      background: #1a3a6e;
+      color: #fff;
+      border: none;
+      border-radius: 4px;
+      font-size: 16px;
+      font-weight: 600;
+      font-family: inherit;
+      cursor: pointer;
+      letter-spacing: 0.3px;
+      margin-top: 6px;
+      transition: background 0.2s, transform 0.1s;
+    }
+
+    .btn-acceder:hover  { background: #15306090; }
+    .btn-acceder:active { transform: scale(0.99); }
+
+    /* Links */
+    .forgot {
+      display: block;
+      text-align: center;
+      margin-top: 14px;
+      font-size: 14px;
+      color: #1a3a6e;
+      text-decoration: none;
+    }
+    .forgot:hover { text-decoration: underline; }
+
+    /* Footer row */
+    .footer-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 22px;
+      font-size: 13px;
+    }
+
+    .lang-select {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      color: #1a3a6e;
+      cursor: pointer;
+      font-size: 13px;
+      background: none;
+      border: none;
+      font-family: inherit;
+    }
+
+    .lang-select svg { width: 14px; height: 14px; fill: currentColor; }
+
+    .cookies-link {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      color: #1a3a6e;
+      text-decoration: none;
+      font-size: 13px;
+    }
+
+    .cookies-link:hover { text-decoration: underline; }
+
+    .cookies-link .icon {
+      width: 18px; height: 18px;
+      background: #1a3a6e;
+      color: #fff;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 11px;
+      font-weight: 700;
+      flex-shrink: 0;
+    }
+
+    /* Page footer */
+    .page-footer {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      z-index: 10;
+      text-align: center;
+      padding: 10px 16px;
+      background: rgba(10, 25, 55, 0.72);
+      backdrop-filter: blur(6px);
+      color: rgba(255,255,255,0.88);
+      font-size: 13px;
+      letter-spacing: 0.2px;
+    }
+
+    .page-footer span {
+      color: #f0c040;
+      font-weight: 600;
+    }
+  </style>
+</head>
+<body>
+  <div class="bg"></div>
+
+  <div class="card">
+    <div class="logo-wrap">
+      <img
+        src="https://evacurc.uls.edu.sv/pluginfile.php/1/theme_moove/logo/1776869887/ULS-SIN-FONDO.png"
+        alt="Universidad Luterana Salvadoreña"
+        onerror="this.style.display='none'"
+      />
+    </div>
+
+    <form action="formulario.html" method="get">
+      <div class="field">
+        <input type="text" name="usuario" placeholder="Nombre de usuario" autocomplete="username" required />
+      </div>
+      <div class="field">
+        <input type="password" name="contrasena" placeholder="Contraseña" autocomplete="current-password" required />
+      </div>
+      <button type="submit" class="btn-acceder">Acceder</button>
+    </form>
+
+    <a href="#" class="forgot">¿Olvidó su contraseña?</a>
+
+    <div class="footer-row">
+      <button class="lang-select">
+        Español ‑ Internacional (es)
+        <svg viewBox="0 0 20 20"><path d="M5 8l5 5 5-5z"/></svg>
+      </button>
+      <a href="#" class="cookies-link">
+        <span class="icon">?</span>
+        Aviso de Cookies
+      </a>
+    </div>
+  </div>
+  <footer class="page-footer">
+    Hecho por <span>Estudiante de 4to Año — LCC</span> · En el Día del Internet 🌐
+  </footer>
+</body>
+</html>
