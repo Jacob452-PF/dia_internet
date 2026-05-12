@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Modificar Datos Personales</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;600&display=swap" rel="stylesheet">
+
+  <style>
+
+    *{
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body{
+      font-family: 'Source Sans 3', sans-serif;
+      min-height: 100vh;
+      overflow-y: auto;
+      position: relative;
+      padding: 40px 20px 90px;
+      display: flex;
+      justify-content: center;
+      align-items: flex-start;
+    }
+
+    /* Fondo */
+
+    .bg{
+      position: fixed;
+      inset: 0;
+      background-image: url('https://evacurc.uls.edu.sv/pluginfile.php/1/theme_moove/loginbgimg/1776869875/curcedificio.png');
+      background-size: cover;
+      background-position: center;
+      filter: brightness(0.78);
+      z-index: -1;
+    }
+
+    /* Tarjeta */
+
+    .card{
+      width: 100%;
+      max-width: 540px;
+      background: rgba(255,255,255,0.96);
+      border-radius: 10px;
+      padding: 35px 40px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.20);
+      animation: fadeUp .4s ease;
+    }
+
+    @keyframes fadeUp{
+      from{
+        opacity: 0;
+        transform: translateY(20px);
+      }
+
+      to{
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* Logo */
+
+    .logo{
+      text-align: center;
+      margin-bottom: 15px;
+    }
+
+    .logo img{
+      width: 140px;
+    }
+
+    h2{
+      text-align: center;
+      color: #1a3a6e;
+      margin-bottom: 28px;
+      font-size: 24px;
+    }
+
+    /* Campos */
+
+    .field{
+      margin-bottom: 16px;
+    }
+
+    .field label{
+      display: block;
+      margin-bottom: 6px;
+      font-weight: 600;
+      color: #333;
+    }
+
+    .field input{
+      width: 100%;
+      padding: 13px 14px;
+      border: 1px solid #ced4da;
+      border-radius: 4px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: .2s;
+    }
+
+    .field input:focus{
+      border-color: #1a3a6e;
+      box-shadow: 0 0 0 3px rgba(26,58,110,0.12);
+    }
+
+    .field input[readonly]{
+      background: #eceff3;
+      color: #666;
+      cursor: not-allowed;
+    }
+
+    /* Contenedor contraseña */
+
+    .password-container{
+      position: relative;
+    }
+
+    .password-container input{
+      padding-right: 50px;
+    }
+
+    .toggle-password{
+      position: absolute;
+      right: 12px;
+      top: 50%;
+      transform: translateY(-50%);
+      border: none;
+      background: transparent;
+      cursor: pointer;
+      font-size: 18px;
+      color: #1a3a6e;
+    }
+
+    /* Checkbox */
+
+    .check-area{
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin: 8px 0 20px;
+      font-size: 15px;
+      color: #333;
+    }
+
+    .check-area input{
+      accent-color: #1a3a6e;
+      width: 16px;
+      height: 16px;
+    }
+
+    /* Cambio contraseña */
+
+    .password-area{
+      display: none;
+      animation: fade .3s ease;
+    }
+
+    @keyframes fade{
+      from{
+        opacity: 0;
+      }
+
+      to{
+        opacity: 1;
+      }
+    }
+
+    /* Botón */
+
+    .btn{
+      width: 100%;
+      padding: 14px;
+      background: #1a3a6e;
+      border: none;
+      border-radius: 4px;
+      color: white;
+      font-size: 16px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: .2s;
+      margin-top: 5px;
+    }
+
+    .btn:hover{
+      background: #153060;
+    }
+
+    /* Footer */
+
+    .page-footer{
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(10,25,55,0.75);
+      color: rgba(255,255,255,0.9);
+      text-align: center;
+      padding: 10px;
+      font-size: 13px;
+      backdrop-filter: blur(5px);
+    }
+
+    .page-footer span{
+      color: #f0c040;
+      font-weight: 600;
+    }
+
+    /* Responsive */
+
+    @media(max-width: 600px){
+
+      body{
+        padding: 20px 12px 90px;
+      }
+
+      .card{
+        padding: 28px 22px;
+      }
+
+    }
+
+  </style>
+</head>
+
+<body>
+
+  <div class="bg"></div>
+
+  <div class="card">
+
+    <div class="logo">
+      <img src="https://evacurc.uls.edu.sv/pluginfile.php/1/theme_moove/logo/1776869887/ULS-SIN-FONDO.png">
+    </div>
+
+    <h2>Modificar Datos Personales</h2>
+
+    <form id="formulario">
+
+      <div class="field">
+        <label>Nombre Completo</label>
+        <input type="text" placeholder="Ingrese su nombre completo" required>
+      </div>
+
+      <div class="field">
+        <label>Correo Electrónico</label>
+        <input type="email" placeholder="Ingrese su correo electrónico" required>
+      </div>
+
+      <div class="field">
+        <label>Teléfono</label>
+        <input type="text" placeholder="Ingrese su teléfono">
+      </div>
+
+      <div class="field">
+        <label>Usuario</label>
+        <input type="text" id="usuario" readonly>
+      </div>
+
+      <div class="field">
+        <label>Contraseña Actual</label>
+
+        <div class="password-container">
+
+          <input type="password" id="passwordActual" readonly>
+
+          <button type="button" class="toggle-password" id="togglePassword">
+            👁
+          </button>
+
+        </div>
+      </div>
+
+      <div class="check-area">
+        <input type="checkbox" id="cambiarPass">
+        <label for="cambiarPass">Deseo cambiar mi contraseña</label>
+      </div>
+
+      <div class="password-area" id="passwordArea">
+
+        <div class="field">
+          <label>Nueva Contraseña</label>
+          <input type="password" id="nuevaPass">
+        </div>
+
+        <div class="field">
+          <label>Confirmar Contraseña</label>
+          <input type="password" id="confirmarPass">
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn">
+        Finalizar Cambios
+      </button>
+
+    </form>
+
+  </div>
+
+  <footer class="page-footer">
+    Hecho por <span>Estudiante de 4to Año — LCC</span> · Gestión de Perfil 👤
+  </footer>
+
+  <script>
+
+    /* Obtener datos del login */
+
+    const params = new URLSearchParams(window.location.search);
+
+    const usuario = params.get("usuario");
+    const contrasena = params.get("contrasena");
+
+    document.getElementById("usuario").value = usuario || "No definido";
+    document.getElementById("passwordActual").value = contrasena || "********";
+
+    /* Mostrar y ocultar contraseña */
+
+    const togglePassword = document.getElementById("togglePassword");
+    const passwordInput = document.getElementById("passwordActual");
+
+    togglePassword.addEventListener("click", function(){
+
+      if(passwordInput.type === "password"){
+
+        passwordInput.type = "text";
+        togglePassword.innerHTML = "🙈";
+
+      }else{
+
+        passwordInput.type = "password";
+        togglePassword.innerHTML = "👁";
+
+      }
+
+    });
+
+    /* Mostrar cambio contraseña */
+
+    const check = document.getElementById("cambiarPass");
+    const passwordArea = document.getElementById("passwordArea");
+
+    check.addEventListener("change", function(){
+
+      if(this.checked){
+        passwordArea.style.display = "block";
+      }else{
+        passwordArea.style.display = "none";
+      }
+
+    });
+
+    /* Validación */
+
+    document.getElementById("formulario").addEventListener("submit", function(e){
+
+      e.preventDefault();
+
+      const nueva = document.getElementById("nuevaPass").value;
+      const confirmar = document.getElementById("confirmarPass").value;
+
+      if(check.checked){
+
+        if(nueva === "" || confirmar === ""){
+          alert("Debe completar la nueva contraseña.");
+          return;
+        }
+
+        if(nueva !== confirmar){
+          alert("Las contraseñas no coinciden.");
+          return;
+        }
+
+      }
+
+      alert("Cambios guardados con éxito.");
+
+    });
+
+  </script>
+
+</body>
+</html>
