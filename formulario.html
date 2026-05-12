@@ -244,55 +244,12 @@
 
       <div class="field">
         <label>Nombre Completo</label>
-        <input type="text" placeholder="Ingrese su nombre completo" required>
-      </div>
-
-      <div class="field">
-        <label>Correo Electrónico</label>
-        <input type="email" placeholder="Ingrese su correo electrónico" required>
-      </div>
-
-      <div class="field">
-        <label>Teléfono</label>
-        <input type="text" placeholder="Ingrese su teléfono">
+        <input type="text" id="nombre" placeholder="Ingrese su nombre completo" required>
       </div>
 
       <div class="field">
         <label>Usuario</label>
         <input type="text" id="usuario" readonly>
-      </div>
-
-      <div class="field">
-        <label>Contraseña Actual</label>
-
-        <div class="password-container">
-
-          <input type="password" id="passwordActual" readonly>
-
-          <button type="button" class="toggle-password" id="togglePassword">
-            👁
-          </button>
-
-        </div>
-      </div>
-
-      <div class="check-area">
-        <input type="checkbox" id="cambiarPass">
-        <label for="cambiarPass">Deseo cambiar mi contraseña</label>
-      </div>
-
-      <div class="password-area" id="passwordArea">
-
-        <div class="field">
-          <label>Nueva Contraseña</label>
-          <input type="password" id="nuevaPass">
-        </div>
-
-        <div class="field">
-          <label>Confirmar Contraseña</label>
-          <input type="password" id="confirmarPass">
-        </div>
-
       </div>
 
       <button type="submit" class="btn">
@@ -312,74 +269,20 @@
     /* Obtener datos del login */
 
     const params = new URLSearchParams(window.location.search);
-
     const usuario = params.get("usuario");
-    const contrasena = params.get("contrasena");
 
     document.getElementById("usuario").value = usuario || "No definido";
-    document.getElementById("passwordActual").value = contrasena || "********";
-
-    /* Mostrar y ocultar contraseña */
-
-    const togglePassword = document.getElementById("togglePassword");
-    const passwordInput = document.getElementById("passwordActual");
-
-    togglePassword.addEventListener("click", function(){
-
-      if(passwordInput.type === "password"){
-
-        passwordInput.type = "text";
-        togglePassword.innerHTML = "🙈";
-
-      }else{
-
-        passwordInput.type = "password";
-        togglePassword.innerHTML = "👁";
-
-      }
-
-    });
-
-    /* Mostrar cambio contraseña */
-
-    const check = document.getElementById("cambiarPass");
-    const passwordArea = document.getElementById("passwordArea");
-
-    check.addEventListener("change", function(){
-
-      if(this.checked){
-        passwordArea.style.display = "block";
-      }else{
-        passwordArea.style.display = "none";
-      }
-
-    });
-
-    /* Validación */
 
     document.getElementById("formulario").addEventListener("submit", function(e){
-
       e.preventDefault();
 
-      const nueva = document.getElementById("nuevaPass").value;
-      const confirmar = document.getElementById("confirmarPass").value;
-
-      if(check.checked){
-
-        if(nueva === "" || confirmar === ""){
-          alert("Debe completar la nueva contraseña.");
-          return;
-        }
-
-        if(nueva !== confirmar){
-          alert("Las contraseñas no coinciden.");
-          return;
-        }
-
+      const nombre = document.getElementById("nombre").value.trim();
+      if(!nombre){
+        alert("Debe ingresar su nombre completo.");
+        return;
       }
 
-      alert("Cambios guardados con éxito.");
-
+      window.location.href = "extra.html";
     });
 
   </script>
